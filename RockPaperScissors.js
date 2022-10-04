@@ -11,7 +11,7 @@ const playerSelection = handResult
 // Variables
 
 let computerSelection = ''
-const waitTime = 1000
+const waitTime = 2000
 const empty = "                    "   
 
 
@@ -95,6 +95,7 @@ function playGame () {
 
 playGame()
 
+console.log("Calculating Scoresheet.....")
 setTimeout (() => {
     console.log( { COMPUER : computerScore, TIE : tieCounter, PLAYER : playerScore } )
     console.log("FINALSCORE FINALSCORE FINALSCORE ".rainbow)
