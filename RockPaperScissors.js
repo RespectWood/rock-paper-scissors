@@ -1,7 +1,19 @@
+
+// User input in Console (installed npm prompt-sync)
+const colors = require("colors");
+
+const prompt = require("prompt-sync")();
+const hand = prompt("Rock, Paper, or Scissors? ");
+
+const handResult = capitalize(hand);
+const playerSelection = handResult
+
 // Variables
 
-const playerSelection = 'Paper'
 let computerSelection = ''
+const waitTime = 1000
+const empty = "                    "   
+
 
 // Score counters
 
@@ -15,9 +27,16 @@ const Winner = {
   Player: 3
 }
 
+// Capitalize first letter
+
+function capitalize(){
+  const capitalized = hand.charAt(0).toUpperCase() + hand.slice(1);
+    return capitalized
+
+}
 // Get a random hand for the computer
 
-function getComputerChoice () {
+function getComputerChoice() {
   const num1 = Math.random() * 100
 
   if (num1 <= 33) {
@@ -31,25 +50,6 @@ function getComputerChoice () {
   }
 }
 
-function playGame () {
-  for (let i = 0; i < 10; i++) {
-    const winner = playRound()
-    if (winner === Winner.Tie) {
-      tieCounter += 1
-      console.log(`Total Ties are ${tieCounter}`)
-    }
-    if (winner === Winner.Computer) {
-      computerScore += 1
-      console.log(`Total computerscore are ${computerScore}`)
-    }
-    if (winner === Winner.Player) {
-      playerScore += 1
-    }
-  }
-}
-
-playGame()
-console.log({ tieCounter, computerScore, playerScore })
 
 // Function for each round of play
 
@@ -73,3 +73,32 @@ function playRound () {
     return Winner.Player
   }
 }
+
+
+function playGame () {
+  for (let i = 0; i < 10; i++) {
+    const winner = playRound()
+    if (winner === Winner.Tie) {
+      tieCounter += 1
+      console.log(`${empty}     Tie : ${tieCounter}`.cyan)
+    }
+    if (winner === Winner.Computer) {
+      computerScore += 1
+      console.log(`Computer Score : ${computerScore}`.magenta)
+    }
+    if (winner === Winner.Player) {
+      playerScore += 1
+      console.log(`${empty}${empty}Player Score : ${playerScore}`.green)
+    }
+  }
+}
+
+playGame()
+
+setTimeout (() => {
+    console.log( { COMPUER : computerScore, TIE : tieCounter, PLAYER : playerScore } )
+    console.log("FINALSCORE FINALSCORE FINALSCORE ".rainbow)
+}, waitTime)
+
+
+
