@@ -1,12 +1,29 @@
 
 // User input in Console (installed npm prompt-sync)
-const colors = require("colors");
 
 const prompt = require("prompt-sync")();
-const hand = prompt("Rock, Paper, or Scissors? ");
+const hand = getUserChoice()
 
-const handResult = capitalize(hand);
-const playerSelection = handResult
+const handChoice = capitalize(hand);
+const playerSelection = handChoice
+
+function getUserChoice(){
+  let isChoiceAllowed = false
+  do {
+    let userChoice = prompt("rockpaperscissor : ");
+    if (userChoice === "Rock" || "Paper" || "Scissors"){
+    
+      return userChoice
+    }
+  isChoiceAllowed = true
+  } 
+  while (isChoiceAllowed === false)
+
+}
+
+
+
+
 
 // Variables
 
@@ -74,6 +91,8 @@ function playRound () {
   }
 }
 
+// colored text in console 
+const colors = require("colors");
 
 function playGame () {
   for (let i = 0; i < 10; i++) {
@@ -95,11 +114,12 @@ function playGame () {
 
 playGame()
 
-console.log("Calculating Scoresheet.....")
-setTimeout (() => {
-    console.log( { COMPUER : computerScore, TIE : tieCounter, PLAYER : playerScore } )
-    console.log("FINALSCORE FINALSCORE FINALSCORE ".rainbow)
-}, waitTime)
+console.log("Calculating Scoresheet.....\n\n")
 
+setTimeout (() => {
+  console.log("FINALSCORE FINALSCORE FINALSCORE FINALSCORE FINALSCORE ".rainbow)
+  console.log( { COMPUER : computerScore, TIE : tieCounter, PLAYER : playerScore } )
+
+}, waitTime)
 
 
