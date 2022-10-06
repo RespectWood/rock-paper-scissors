@@ -3,6 +3,27 @@
 
 const prompt = require("prompt-sync")();
 
+// Variables
+
+let computerSelection = ''
+const waitTime = 1000
+const empty = "                    "   
+
+
+// Score counters
+
+let tieCounter = 0
+let playerScore = 0
+let computerScore = 0
+
+const Winner = {
+  Tie: 1,
+  Computer: 2,
+  Player: 3
+}
+
+
+
 // Capitalize first letter
 
 capitalize = (s) => {
@@ -28,26 +49,6 @@ function getUserChoice(){
         }
     }
 
-}
-
-
-// Variables
-
-let computerSelection = ''
-const waitTime = 1000
-const empty = "                    "   
-
-
-// Score counters
-
-let tieCounter = 0
-let playerScore = 0
-let computerScore = 0
-
-const Winner = {
-  Tie: 1,
-  Computer: 2,
-  Player: 3
 }
 
 
