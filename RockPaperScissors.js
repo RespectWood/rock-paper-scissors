@@ -23,8 +23,6 @@ function getUserChoice(){
 
 
 
-
-
 // Variables
 
 let computerSelection = ''
@@ -118,7 +116,7 @@ console.log("Calculating Scoresheet.....\n\n")
 
 setTimeout (() => {
   console.log("FINALSCORE FINALSCORE FINALSCORE FINALSCORE FINALSCORE ".rainbow)
-  console.log( { COMPUER : computerScore, TIE : tieCounter, PLAYER : playerScore } )
+  console.log( { COMPUTER : computerScore, TIE : tieCounter, PLAYER : playerScore } )
 
 }, waitTime)
 
