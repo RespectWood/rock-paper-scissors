@@ -10,7 +10,7 @@ const playerSelection = handChoice
 function getUserChoice(){
   let isChoiceAllowed = false
   do {
-    let userChoice = prompt("rockpaperscissor : ");
+    let userChoice = prompt("Choose: Rock, Paper, or Scissors? : ");
     if (userChoice === "Rock" || "Paper" || "Scissors"){
     
       return userChoice
