@@ -21,22 +21,20 @@ function getUserChoice(){
 
     while (!isChoiceAllowed){
       let userChoice = prompt("please choose your hand : ")
-      userChoice = capitalize(userChoice)
+          userChoice = capitalize(userChoice)
       
         if (availableHands.includes(userChoice)){
-            return userChoice
+        return userChoice
         }
     }
 
 }
 
 
-
-
 // Variables
 
 let computerSelection = ''
-const waitTime = 2000
+const waitTime = 1000
 const empty = "                    "   
 
 
@@ -99,6 +97,7 @@ const colors = require("colors");
 
 function playGame () {
   for (let i = 0; i < 10; i++) {
+    // setTimeout (() => {
     const winner = playRound()
     if (winner === Winner.Tie) {
       tieCounter += 1
@@ -112,7 +111,8 @@ function playGame () {
       playerScore += 1
       console.log(`${empty}${empty}Player Score : ${playerScore}`.green)
     }
-  }
+  // }, waitTime)
+}
 }
 
 playGame()
