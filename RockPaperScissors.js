@@ -1,13 +1,17 @@
 
-// User input in Console (installed npm prompt-sync)
+// User input in Console (npm prompt-sync)
 
 const prompt = require("prompt-sync")();
 
+// Capitalize first letter
+
+capitalize = (s) => {
+  return s.charAt(0).toUpperCase() + s.slice(1)
+}
+
+
 const hand = getUserChoice()
-const handChoice = capitalize(hand);
-const playerSelection = handChoice
-
-
+const playerSelection = hand
 
 
 
@@ -16,14 +20,16 @@ function getUserChoice(){
   let isChoiceAllowed = false
 
     while (!isChoiceAllowed){
-
       let userChoice = prompt("please choose your hand : ")
+      userChoice = capitalize(userChoice)
+      
         if (availableHands.includes(userChoice)){
-
-          return userChoice
+            return userChoice
         }
     }
+
 }
+
 
 
 
@@ -46,13 +52,7 @@ const Winner = {
   Player: 3
 }
 
-// Capitalize first letter
 
-function capitalize(){
-  const capitalized = hand.charAt(0).toUpperCase() + hand.slice(1);
-    return capitalized
-
-}
 // Get a random hand for the computer
 
 function getComputerChoice() {
@@ -68,6 +68,7 @@ function getComputerChoice() {
     return 'Scissors'
   }
 }
+
 
 
 // Function for each round of play
