@@ -2,23 +2,27 @@
 // User input in Console (installed npm prompt-sync)
 
 const prompt = require("prompt-sync")();
-const hand = getUserChoice()
 
+const hand = getUserChoice()
 const handChoice = capitalize(hand);
 const playerSelection = handChoice
 
-function getUserChoice(){
-  let isChoiceAllowed = false
-  do {
-    let userChoice = prompt("Choose: Rock, Paper, or Scissors? : ");
-    if (userChoice === "Rock" || "Paper" || "Scissors"){
-    
-      return userChoice
-    }
-  isChoiceAllowed = true
-  } 
-  while (isChoiceAllowed === false)
 
+
+
+
+function getUserChoice(){
+  const availableHands = ["Rock", "Paper", "Scissors"];
+  let isChoiceAllowed = false
+
+    while (!isChoiceAllowed){
+
+      let userChoice = prompt("please choose your hand : ")
+        if (availableHands.includes(userChoice)){
+
+          return userChoice
+        }
+    }
 }
 
 
