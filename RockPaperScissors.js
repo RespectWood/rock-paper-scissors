@@ -69,8 +69,8 @@ function getComputerChoice() {
 }
 
 
-
 // Function for each round of play
+
 
 function playRound () {
   computerSelection = getComputerChoice()
