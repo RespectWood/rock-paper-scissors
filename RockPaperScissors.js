@@ -27,7 +27,7 @@ const Winner = {
 // Capitalize first letter
 
 capitalize = (s) => {
-  return s.charAt(0).toUpperCase() + s.slice(1)
+  return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase()
 }
 
 
@@ -39,14 +39,13 @@ const playerSelection = hand
 function getUserChoice(){
   const availableHands = ["Rock", "Paper", "Scissors"];
   let isChoiceAllowed = false
-
-    while (!isChoiceAllowed){
+  while (!isChoiceAllowed){
       let userChoice = prompt("please choose your hand : ")
-          userChoice = capitalize(userChoice)
+      userChoice = capitalize(userChoice)
       
-        if (availableHands.includes(userChoice)){
+      if (availableHands.includes(userChoice)){
         return userChoice
-        }
+      }
     }
 
 }
