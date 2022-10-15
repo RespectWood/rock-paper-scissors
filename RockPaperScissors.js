@@ -4,10 +4,9 @@ const prompt = require("prompt-sync")();
 
 // Variables
 
-let computerSelection = "";
 const waitTime = 1000;
-const empty = "                    ";
-
+// const empty = "                    ";
+const empty = " ";
 // Score counters
 
 let tieCounter = 0;
@@ -26,8 +25,6 @@ capitalize = (s) => {
   return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
 };
 
-const hand = getUserChoice();
-const playerSelection = hand;
 
 function getUserChoice() {
   const availableHands = ["Rock", "Paper", "Scissors"];
@@ -61,7 +58,10 @@ function getComputerChoice() {
 // Function for each round of play
 
 function playRound() {
-  computerSelection = getComputerChoice();
+  const playerSelection = getUserChoice();
+  const computerSelection = getComputerChoice();
+    console.log(`Computer choosed: ${computerSelection}`)
+  
 
   if (computerSelection === playerSelection) {
     return Winner.Tie;
@@ -85,20 +85,20 @@ function playRound() {
 const colors = require("colors");
 
 function playGame() {
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 5; i++) {
     // setTimeout (() => {
     const winner = playRound();
     if (winner === Winner.Tie) {
       tieCounter += 1;
-      console.log(`${empty}     Tie : ${tieCounter}`.cyan);
+      console.log(`${empty.repeat(25)}Tie : ${tieCounter}`.cyan);
     }
     if (winner === Winner.Computer) {
       computerScore += 1;
-      console.log(`Computer Score : ${computerScore}`.magenta);
+      console.log(`${empty.repeat(20)}Computer Score : ${computerScore}`.magenta);
     }
     if (winner === Winner.Player) {
       playerScore += 1;
-      console.log(`${empty}${empty}Player Score : ${playerScore}`.green);
+      console.log(`${empty.repeat(20)}Player Score : ${playerScore}`.green);
     }
     // }, waitTime + i)
   }
@@ -118,3 +118,4 @@ setTimeout(() => {
     PLAYER: playerScore,
   });
 }, waitTime);
+
