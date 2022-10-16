@@ -5,8 +5,9 @@ const prompt = require("prompt-sync")();
 // Variables
 
 const waitTime = 1000;
-// const empty = "                    ";
+
 const empty = " ";
+
 // Score counters
 
 let tieCounter = 0;
@@ -24,7 +25,6 @@ const Winner = {
 capitalize = (s) => {
   return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
 };
-
 
 function getUserChoice() {
   const availableHands = ["Rock", "Paper", "Scissors"];
@@ -60,8 +60,7 @@ function getComputerChoice() {
 function playRound() {
   const playerSelection = getUserChoice();
   const computerSelection = getComputerChoice();
-    console.log(`Computer choosed: ${computerSelection}`)
-  
+  console.log(`Computer choosed: ${computerSelection}`);
 
   if (computerSelection === playerSelection) {
     return Winner.Tie;
@@ -85,7 +84,7 @@ function playRound() {
 const colors = require("colors");
 
 function playGame() {
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 1; i++) {
     // setTimeout (() => {
     const winner = playRound();
     if (winner === Winner.Tie) {
@@ -94,7 +93,9 @@ function playGame() {
     }
     if (winner === Winner.Computer) {
       computerScore += 1;
-      console.log(`${empty.repeat(20)}Computer Score : ${computerScore}`.magenta);
+      console.log(
+        `${empty.repeat(20)}Computer Score : ${computerScore}`.magenta
+      );
     }
     if (winner === Winner.Player) {
       playerScore += 1;
@@ -110,7 +111,7 @@ console.log("Calculating Scoresheet.....\n\n");
 
 setTimeout(() => {
   console.log(
-    "FINALSCORE FINALSCORE FINALSCORE FINALSCORE FINALSCORE ".rainbow
+    " FINALSCORE FINALSCORE FINALSCORE  ".rainbow
   );
   console.log({
     COMPUTER: computerScore,
@@ -118,4 +119,3 @@ setTimeout(() => {
     PLAYER: playerScore,
   });
 }, waitTime);
-
