@@ -39,6 +39,16 @@ function getUserChoice() {
   }
 }
 
+// Button
+
+const choiceButton = document.querySelectorAll(buttons);
+
+choiceButton.forEach((buttons) => {
+  buttons.addEventListener("click", () => {
+    alert(buttons.id);
+  });
+});
+
 // Get a random hand for the computer - switch instead of if?
 
 function getComputerChoice() {
@@ -84,7 +94,7 @@ function playRound() {
 const colors = require("colors");
 
 function playGame() {
-  for (let i = 0; i < 1; i++) {
+  for (let i = 0; i < 10; i++) {
     // setTimeout (() => {
     const winner = playRound();
     if (winner === Winner.Tie) {
@@ -110,9 +120,7 @@ playGame();
 console.log("Calculating Scoresheet.....\n\n");
 
 setTimeout(() => {
-  console.log(
-    " FINALSCORE FINALSCORE FINALSCORE  ".rainbow
-  );
+  console.log(" FINALSCORE FINALSCORE FINALSCORE  ".rainbow);
   console.log({
     COMPUTER: computerScore,
     TIE: tieCounter,
