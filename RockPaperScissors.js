@@ -1,6 +1,6 @@
 // User input in Console (npm prompt-sync)
 
-const prompt = require("prompt-sync")();
+// const prompt = require("prompt-sync")();
 
 // Variables
 
@@ -21,17 +21,16 @@ const Winner = {
 };
 
 // Capitalize first letter
-
-capitalize = (s) => {
-  return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
-};
+// capitalize = (s) => {
+//   return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
+// };
 
 function getUserChoice() {
   const availableHands = ["Rock", "Paper", "Scissors"];
   let isChoiceAllowed = false;
   while (!isChoiceAllowed) {
     let userChoice = prompt("please choose your hand : ");
-    userChoice = capitalize(userChoice);
+    // userChoice = capitalize(userChoice);
 
     if (availableHands.includes(userChoice)) {
       return userChoice;
@@ -41,14 +40,15 @@ function getUserChoice() {
 
 // Button
 
-const choiceButton = document.querySelectorAll(buttons);
+function buttonchoice() {
+  let choiceButton = document.getElementById("buttons");
 
-choiceButton.forEach((buttons) => {
-  buttons.addEventListener("click", () => {
-    alert(buttons.id);
+  choiceButton.forEach((buttons) => {
+    buttons.addEventListener("click", () => {
+      console.log(buttons.id);
+    });
   });
-});
-
+}
 // Get a random hand for the computer - switch instead of if?
 
 function getComputerChoice() {
@@ -91,27 +91,23 @@ function playRound() {
 }
 
 // colored text in console
-const colors = require("colors");
+// const colors = require("colors");
 
 function playGame() {
-  for (let i = 0; i < 10; i++) {
-    // setTimeout (() => {
+  for (let i = 0; i < 1; i++) {
     const winner = playRound();
     if (winner === Winner.Tie) {
       tieCounter += 1;
-      console.log(`${empty.repeat(25)}Tie : ${tieCounter}`.cyan);
+      console.log(`${empty.repeat(25)}Tie : ${tieCounter}`);
     }
     if (winner === Winner.Computer) {
       computerScore += 1;
-      console.log(
-        `${empty.repeat(20)}Computer Score : ${computerScore}`.magenta
-      );
+      console.log(`${empty.repeat(20)}Computer Score : ${computerScore}`);
     }
     if (winner === Winner.Player) {
       playerScore += 1;
-      console.log(`${empty.repeat(20)}Player Score : ${playerScore}`.green);
+      console.log(`${empty.repeat(20)}Player Score : ${playerScore}`);
     }
-    // }, waitTime + i)
   }
 }
 
@@ -120,7 +116,7 @@ playGame();
 console.log("Calculating Scoresheet.....\n\n");
 
 setTimeout(() => {
-  console.log(" FINALSCORE FINALSCORE FINALSCORE  ".rainbow);
+  console.log(" FINALSCORE FINALSCORE FINALSCORE  ");
   console.log({
     COMPUTER: computerScore,
     TIE: tieCounter,
