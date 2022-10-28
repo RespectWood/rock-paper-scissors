@@ -4,12 +4,6 @@ let tieCounter = 0;
 let playerScore = 0;
 let computerScore = 0;
 
-const Winner = {
-  Tie: 1,
-  Computer: 2,
-  Player: 3,
-};
-
 // Button
 const choiceButton = document.querySelectorAll(".selection-button");
 choiceButton.forEach((choice) => {
