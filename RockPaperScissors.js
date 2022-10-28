@@ -1,7 +1,3 @@
-const waitTime = 1000;
-
-const empty = " ";
-
 // Score counters
 
 let tieCounter = 0;
@@ -18,8 +14,7 @@ const Winner = {
 const choiceButton = document.querySelectorAll(".selection-button");
 choiceButton.forEach((choice) => {
   choice.addEventListener("click", (e) => {
-    // console.log(e.target.id);
-    playRound(e.target.id);
+    playRound(e.target.id); // invoke the playround with the selected target as argument (e.target.id)
   });
 });
 
@@ -44,23 +39,28 @@ function getComputerChoice() {
 function playRound(playerSelection) {
   const computerSelection = getComputerChoice();
   console.log(`Computer choosed: ${computerSelection}`);
-
-  if (computerSelection === playerSelection) {
+  const tie = computerSelection === playerSelection;
+  if (tie) {
     tieCounter += 1;
   }
-  if (computerSelection === "Rock" && playerSelection === "Scissors") {
+  // prettier-ignore
+  const isComputerWinning 
+      =  computerSelection === "Rock"     && playerSelection === "Scissors" 
+      || computerSelection === "Paper"    && playerSelection === "Rock" 
+      || computerSelection === "Scissors" && playerSelection === "Paper"
+
+  if (isComputerWinning) {
     computerScore += 1;
   }
-
-  if (computerSelection === "Paper" && playerSelection === "Rock") {
-    computerScore += 1;
-  }
-
-  if (computerSelection === "Scissors" && playerSelection === "Paper") {
-    computerScore += 1;
-  } else {
+  // prettier-ignore
+  const isPlayerWinning 
+          =  playerSelection === "Rock"     && computerSelection === "Scissors" 
+          || playerSelection === "Paper"    && computerSelection === "Rock" 
+          || playerSelection === "Scissors" && computerSelection === "Paper"
+  if (isPlayerWinning) {
     playerScore += 1;
   }
+
   console.log({
     COMPUTER: computerScore,
     TIE: tieCounter,
