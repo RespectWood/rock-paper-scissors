@@ -51,13 +51,13 @@
 }
 #computerBoard{
     text-align: center;
-    color:rgba(23, 14, 14, 0.87);
+    color: black;
     
 }
 
 #playerBoard{
     text-align: center;
-    color:rgba(23, 14, 14, 0.87);
+    color: black;
 }
 
 .names{
