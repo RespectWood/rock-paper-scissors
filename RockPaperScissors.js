@@ -4,11 +4,17 @@ playerScoreEL.classList.add("ScoreCounter");
 const computerScoreEL = document.createElement("p");
 computerScoreEL.classList.add("ScoreCounter");
 
+const tieScoreEL = document.createElement("p");
+tieScoreEL.classList.add("ScoreCounter");
+
 const playerScoreCircle = document.getElementById("PlayerScore");
 playerScoreCircle.appendChild(playerScoreEL);
 
 const computerScoreCircle = document.getElementById("ComputerScore");
 computerScoreCircle.appendChild(computerScoreEL);
+
+const tieScoreCircle = document.getElementById("Ties");
+tieScoreCircle.appendChild(tieScoreEL);
 
 // Score counters
 
@@ -46,12 +52,16 @@ function getComputerChoice() {
 // Function for each round of play
 
 function playRound(playerSelection) {
+  // tieScoreEL.innerText = "";
   const computerSelection = getComputerChoice();
   console.log(`Computer choosed: ${computerSelection}`);
   const tie = computerSelection === playerSelection;
   if (tie) {
     tieCounter += 1;
-    // tiepopup() call function here
+    tieScoreEL.innerText = "TIE!";
+    setTimeout(() => {
+      tieScoreEL.innerText = "";
+    }, 400);
   }
   // prettier-ignore
   const isComputerWinning 
