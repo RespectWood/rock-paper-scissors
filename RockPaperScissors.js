@@ -1,8 +1,23 @@
+const playerScoreEL = document.createElement("p");
+playerScoreEL.classList.add("ScoreCounter");
+
+const computerScoreEL = document.createElement("p");
+computerScoreEL.classList.add("ScoreCounter");
+
+const playerScoreCircle = document.getElementById("PlayerScore");
+playerScoreCircle.appendChild(playerScoreEL);
+
+const computerScoreCircle = document.getElementById("ComputerScore");
+computerScoreCircle.appendChild(computerScoreEL);
+
 // Score counters
 
 let tieCounter = 0;
 let playerScore = 0;
 let computerScore = 0;
+
+playerScoreEL.innerText = playerScore;
+computerScoreEL.innerText = computerScore;
 
 // Button
 const choiceButton = document.querySelectorAll(".selection-button");
@@ -36,28 +51,32 @@ function playRound(playerSelection) {
   const tie = computerSelection === playerSelection;
   if (tie) {
     tieCounter += 1;
+    // tiepopup() call function here
   }
   // prettier-ignore
   const isComputerWinning 
-      =  computerSelection === "Rock"     && playerSelection === "Scissors" 
-      || computerSelection === "Paper"    && playerSelection === "Rock" 
-      || computerSelection === "Scissors" && playerSelection === "Paper"
+  =  computerSelection === "Rock"     && playerSelection === "Scissors" 
+  || computerSelection === "Paper"    && playerSelection === "Rock" 
+  || computerSelection === "Scissors" && playerSelection === "Paper"
 
   if (isComputerWinning) {
     computerScore += 1;
   }
   // prettier-ignore
   const isPlayerWinning 
-          =  playerSelection === "Rock"     && computerSelection === "Scissors" 
-          || playerSelection === "Paper"    && computerSelection === "Rock" 
-          || playerSelection === "Scissors" && computerSelection === "Paper"
+  =  playerSelection === "Rock"     && computerSelection === "Scissors" 
+  || playerSelection === "Paper"    && computerSelection === "Rock" 
+  || playerSelection === "Scissors" && computerSelection === "Paper"
   if (isPlayerWinning) {
     playerScore += 1;
   }
 
+  playerScoreEL.innerText = playerScore;
+  computerScoreEL.innerText = computerScore;
+
   console.log({
-    COMPUTER: computerScore,
-    TIE: tieCounter,
     PLAYER: playerScore,
+    TIE: tieCounter,
+    COMPUTER: computerScore,
   });
 }
