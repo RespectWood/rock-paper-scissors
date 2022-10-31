@@ -84,6 +84,16 @@ function playRound(playerSelection) {
   playerScoreEL.innerText = playerScore;
   computerScoreEL.innerText = computerScore;
 
+  if (playerScore === 5) {
+    alert("WOW You Win!!");
+    location.reload();
+  }
+
+  if (computerScore === 5) {
+    alert("You Lose, try again?");
+    location.reload();
+  }
+
   console.log({
     PLAYER: playerScore,
     TIE: tieCounter,
