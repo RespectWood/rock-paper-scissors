@@ -52,7 +52,7 @@ function getComputerChoice() {
 // Function for each round of play
 
 function playRound(playerSelection) {
-  // tieScoreEL.innerText = "";
+  tieScoreEL.innerText = "";
   const computerSelection = getComputerChoice();
   console.log(`Computer choosed: ${computerSelection}`);
   const tie = computerSelection === playerSelection;
