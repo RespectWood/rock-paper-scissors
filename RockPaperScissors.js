@@ -45,12 +45,22 @@ choiceButton.forEach((choice) => {
   });
 });
 
-// Prompt & Button for confirm username
+// Prompt & Button for confirm username - Button disabled if no input
 
-const inputField = document.getElementById("user-name");
-const NameOK = document.getElementById("nameSubmitbtn");
+const inputField = document.querySelector(".user-name");
+const letsPlaybtn = document.querySelector(".lets-playbtn");
 
-NameOK.addEventListener("click", () => {
+// letsPlaybtn.disabled = "false";
+
+// inputField.addEventListener("keyup", () => {
+//   if (inputField.value === "") {
+//     letsPlaybtn.disabled = "true";
+//   } else {
+//     letsPlaybtn.disabled = "false";
+//   }
+// });
+
+letsPlaybtn.addEventListener("click", () => {
   document.getElementById("playerBoard").innerText = inputField.value;
   document.querySelector(".popUpName").style.display = "none";
 });

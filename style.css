@@ -138,7 +138,7 @@
     font-size: 2rem;
 }
 
-#nameSubmitbtn{
+.lets-playbtn{
     border-radius: 10px;
     border: 2px black solid;
     padding: 0.6rem 1.2rem;
@@ -169,7 +169,7 @@
     font-size: 2rem;
 }
 
-#user-name{
+.user-name{
     border-radius: 10px;
     border: 2px black solid;
     padding: 0.6rem 1.2rem;
@@ -177,7 +177,7 @@
     text-align: center;
     background-color: #ebc88d;
   }
-    #user-name:focus{
+    .user-name:focus{
         box-shadow: #d58b01;
         outline: black;
 
