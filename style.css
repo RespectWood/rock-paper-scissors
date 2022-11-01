@@ -168,3 +168,8 @@
     text-align: center;
     background-color: #ebc88d;
   }
+  #user-name:focus{
+    box-shadow: #d58b01;
+    outline: black;
+
+  }
