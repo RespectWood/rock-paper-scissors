@@ -1,3 +1,4 @@
+// Scorecounters for player, computer & tie
 const playerScoreEL = document.createElement("p");
 playerScoreEL.classList.add("ScoreCounter");
 
@@ -7,6 +8,7 @@ computerScoreEL.classList.add("ScoreCounter");
 const tieScoreEL = document.createElement("p");
 tieScoreEL.classList.add("ScoreCounter");
 
+// Visual background-circle for Scorecounters
 const playerScoreCircle = document.getElementById("PlayerScore");
 playerScoreCircle.appendChild(playerScoreEL);
 
@@ -16,6 +18,9 @@ computerScoreCircle.appendChild(computerScoreEL);
 const tieScoreCircle = document.getElementById("Ties");
 tieScoreCircle.appendChild(tieScoreEL);
 
+const popUp = document.querySelector(".popUp");
+const popupInfo = document.querySelector("#popUpText");
+console.log(popUp);
 // Score counters
 let tieCounter = 0;
 let playerScore = 0;
@@ -25,8 +30,10 @@ playerScoreEL.innerText = playerScore;
 computerScoreEL.innerText = computerScore;
 
 // Prompt for Player name
-let person = prompt("Hi!, please enter your username : ");
-document.getElementById("playerBoard").innerText = person;
+setTimeout(() => {
+  let person = prompt("Hi!, please enter your username : ");
+  document.getElementById("playerBoard").innerText = person;
+}, 500);
 
 // Button
 const choiceButton = document.querySelectorAll(".selection-button");
@@ -51,6 +58,13 @@ function getComputerChoice() {
   }
 }
 
+function resetGame() {
+  tiecounter = 0;
+  playerScore = 0;
+  computerScore = 0;
+  playerScoreEL.innerText = playerScore;
+  computerScoreEL.innerText = computerScore;
+}
 // Function for each round of play
 function playRound(playerSelection) {
   tieScoreEL.innerText = "";
@@ -86,13 +100,21 @@ function playRound(playerSelection) {
   computerScoreEL.innerText = computerScore;
 
   if (playerScore === 5) {
-    alert("WOW You Win!!");
-    location.reload();
+    popUp.style.display = "flex";
+    popupInfo.innerText = "You win!";
+    setTimeout(() => {
+      resetGame();
+      popUp.style.display = "none";
+    }, 3000);
   }
 
   if (computerScore === 5) {
-    alert("You Lose, try again?");
-    location.reload();
+    popUp.style.display = "flex";
+    popupInfo.innerText = "You Lose";
+    setTimeout(() => {
+      resetGame();
+      popUp.style.display = "none";
+    }, 3000);
   }
 
   console.log({
