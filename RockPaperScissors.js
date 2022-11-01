@@ -19,8 +19,8 @@ const tieScoreCircle = document.getElementById("Ties");
 tieScoreCircle.appendChild(tieScoreEL);
 
 const popUp = document.querySelector(".popUp");
-const popupInfo = document.querySelector("#popUpText");
-console.log(popUp);
+const popupInfo = document.querySelector("#popup-text");
+
 // Score counters
 let tieCounter = 0;
 let playerScore = 0;
@@ -30,17 +30,24 @@ playerScoreEL.innerText = playerScore;
 computerScoreEL.innerText = computerScore;
 
 // Prompt for Player name
-setTimeout(() => {
-  let person = prompt("Hi!, please enter your username : ");
-  document.getElementById("playerBoard").innerText = person;
-}, 500);
 
-// Button
+// Button for hand selection
+
 const choiceButton = document.querySelectorAll(".selection-button");
 choiceButton.forEach((choice) => {
   choice.addEventListener("click", (e) => {
     playRound(e.target.id); // invoke the playround with the selected target as argument (e.target.id)
   });
+});
+
+// Prompt & Button for confirm username
+
+const inputField = document.getElementById("user-name");
+console.log(inputField);
+const NameOK = document.getElementById("nameSubmitbtn");
+NameOK.addEventListener("click", () => {
+  document.getElementById("playerBoard").innerText = inputField.value;
+  document.querySelector(".popUpName").style.display = "none";
 });
 
 // Get a random hand for the computer - switch instead of if?
@@ -99,7 +106,7 @@ function playRound(playerSelection) {
   playerScoreEL.innerText = playerScore;
   computerScoreEL.innerText = computerScore;
 
-  if (playerScore === 5) {
+  if (playerScore === 1) {
     popUp.style.display = "flex";
     popupInfo.innerText = "You win!";
     setTimeout(() => {
@@ -108,7 +115,7 @@ function playRound(playerSelection) {
     }, 3000);
   }
 
-  if (computerScore === 5) {
+  if (computerScore === 1) {
     popUp.style.display = "flex";
     popupInfo.innerText = "You Lose";
     setTimeout(() => {
