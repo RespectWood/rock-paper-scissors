@@ -1,12 +1,31 @@
-// User input in Console (npm prompt-sync)
+// Scorecounters for player, computer & tie
 
-const prompt = require("prompt-sync")();
+const playerScoreEL = document.createElement("p");
+playerScoreEL.classList.add("ScoreCounter");
 
-// Variables
+const computerScoreEL = document.createElement("p");
+computerScoreEL.classList.add("ScoreCounter");
 
-const waitTime = 1000;
+const tieScoreEL = document.createElement("p");
+tieScoreEL.classList.add("ScoreCounter");
 
-const empty = " ";
+// Visual background-circle for Scorecounters
+
+const playerScoreCircle = document.getElementById("PlayerScore");
+playerScoreCircle.appendChild(playerScoreEL);
+
+const computerScoreCircle = document.getElementById("ComputerScore");
+computerScoreCircle.appendChild(computerScoreEL);
+
+const tieScoreCircle = document.getElementById("Ties");
+tieScoreCircle.appendChild(tieScoreEL);
+
+tieScoreCircle.style.display = "none";
+
+// text in popup-window when game is over
+
+const popUp = document.querySelector(".popUp");
+const popupInfo = document.querySelector("#popup-text");
 
 // Score counters
 
@@ -14,30 +33,27 @@ let tieCounter = 0;
 let playerScore = 0;
 let computerScore = 0;
 
-const Winner = {
-  Tie: 1,
-  Computer: 2,
-  Player: 3,
-};
+playerScoreEL.innerText = playerScore;
+computerScoreEL.innerText = computerScore;
 
-// Capitalize first letter
+// Button for hand selection
 
-capitalize = (s) => {
-  return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
-};
+const choiceButton = document.querySelectorAll(".selection-button");
+choiceButton.forEach((choice) => {
+  choice.addEventListener("click", (e) => {
+    playRound(e.target.id); // invoke the playround with the selected target as argument (e.target.id)
+  });
+});
 
-function getUserChoice() {
-  const availableHands = ["Rock", "Paper", "Scissors"];
-  let isChoiceAllowed = false;
-  while (!isChoiceAllowed) {
-    let userChoice = prompt("please choose your hand : ");
-    userChoice = capitalize(userChoice);
+// Prompt & Button for confirm username - Button disabled if no input
 
-    if (availableHands.includes(userChoice)) {
-      return userChoice;
-    }
-  }
-}
+const inputField = document.querySelector(".user-name");
+const letsPlaybtn = document.querySelector(".lets-playbtn");
+
+letsPlaybtn.addEventListener("click", () => {
+  document.getElementById("playerBoard").innerText = inputField.value;
+  document.querySelector(".popUpName").style.display = "none";
+});
 
 // Get a random hand for the computer - switch instead of if?
 
@@ -55,67 +71,72 @@ function getComputerChoice() {
   }
 }
 
+function resetGame() {
+  tiecounter = 0;
+  playerScore = 0;
+  computerScore = 0;
+  playerScoreEL.innerText = playerScore;
+  computerScoreEL.innerText = computerScore;
+}
 // Function for each round of play
 
-function playRound() {
-  const playerSelection = getUserChoice();
+function playRound(playerSelection) {
+  tieScoreEL.innerText = "";
   const computerSelection = getComputerChoice();
   console.log(`Computer choosed: ${computerSelection}`);
+  const tie = computerSelection === playerSelection;
+  if (tie) {
+    tieCounter += 1;
+    tieScoreCircle.style.display = "flex";
+    tieScoreEL.innerText = "TIE!";
 
-  if (computerSelection === playerSelection) {
-    return Winner.Tie;
+    setTimeout(() => {
+      tieScoreEL.innerText = "";
+      tieScoreCircle.style.display = "none";
+    }, 600);
   }
-  if (computerSelection === "Rock" && playerSelection === "Scissors") {
-    return Winner.Computer;
+  // prettier-ignore
+  const isComputerWinning 
+  =  computerSelection === "Rock"     && playerSelection === "Scissors" 
+  || computerSelection === "Paper"    && playerSelection === "Rock" 
+  || computerSelection === "Scissors" && playerSelection === "Paper"
+
+  if (isComputerWinning) {
+    computerScore += 1;
+  }
+  // prettier-ignore
+  const isPlayerWinning 
+  =  playerSelection === "Rock"     && computerSelection === "Scissors" 
+  || playerSelection === "Paper"    && computerSelection === "Rock" 
+  || playerSelection === "Scissors" && computerSelection === "Paper"
+  if (isPlayerWinning) {
+    playerScore += 1;
   }
 
-  if (computerSelection === "Paper" && playerSelection === "Rock") {
-    return Winner.Computer;
+  playerScoreEL.innerText = playerScore;
+  computerScoreEL.innerText = computerScore;
+
+  if (playerScore === 5) {
+    popUp.style.display = "flex";
+    popupInfo.innerText = "You win!";
+    setTimeout(() => {
+      resetGame();
+      popUp.style.display = "none";
+    }, 3000);
   }
 
-  if (computerSelection === "Scissors" && playerSelection === "Paper") {
-    return Winner.Computer;
-  } else {
-    return Winner.Player;
+  if (computerScore === 5) {
+    popUp.style.display = "flex";
+    popupInfo.innerText = "You Lose";
+    setTimeout(() => {
+      resetGame();
+      popUp.style.display = "none";
+    }, 3000);
   }
-}
 
-// colored text in console
-const colors = require("colors");
-
-function playGame() {
-  for (let i = 0; i < 1; i++) {
-    // setTimeout (() => {
-    const winner = playRound();
-    if (winner === Winner.Tie) {
-      tieCounter += 1;
-      console.log(`${empty.repeat(25)}Tie : ${tieCounter}`.cyan);
-    }
-    if (winner === Winner.Computer) {
-      computerScore += 1;
-      console.log(
-        `${empty.repeat(20)}Computer Score : ${computerScore}`.magenta
-      );
-    }
-    if (winner === Winner.Player) {
-      playerScore += 1;
-      console.log(`${empty.repeat(20)}Player Score : ${playerScore}`.green);
-    }
-    // }, waitTime + i)
-  }
-}
-
-playGame();
-
-console.log("Calculating Scoresheet.....\n\n");
-
-setTimeout(() => {
-  console.log(
-    " FINALSCORE FINALSCORE FINALSCORE  ".rainbow
-  );
   console.log({
-    COMPUTER: computerScore,
-    TIE: tieCounter,
     PLAYER: playerScore,
+    TIE: tieCounter,
+    COMPUTER: computerScore,
   });
-}, waitTime);
+}
