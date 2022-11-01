@@ -133,10 +133,4 @@ function playRound(playerSelection) {
       popUp.style.display = "none";
     }, 3000);
   }
-
-  console.log({
-    PLAYER: playerScore,
-    TIE: tieCounter,
-    COMPUTER: computerScore,
-  });
 }
