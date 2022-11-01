@@ -179,7 +179,8 @@
   }
     .user-name:focus{
         box-shadow: #d58b01;
-        outline: black;
+        outline: rgba(0, 0, 0, 0.418);
+        background: #7a581ec2;
 
   }
 

@@ -50,16 +50,6 @@ choiceButton.forEach((choice) => {
 const inputField = document.querySelector(".user-name");
 const letsPlaybtn = document.querySelector(".lets-playbtn");
 
-// letsPlaybtn.disabled = "false";
-
-// inputField.addEventListener("keyup", () => {
-//   if (inputField.value === "") {
-//     letsPlaybtn.disabled = "true";
-//   } else {
-//     letsPlaybtn.disabled = "false";
-//   }
-// });
-
 letsPlaybtn.addEventListener("click", () => {
   document.getElementById("playerBoard").innerText = inputField.value;
   document.querySelector(".popUpName").style.display = "none";
