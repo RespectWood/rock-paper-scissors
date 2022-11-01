@@ -17,13 +17,16 @@ const tieScoreCircle = document.getElementById("Ties");
 tieScoreCircle.appendChild(tieScoreEL);
 
 // Score counters
-
 let tieCounter = 0;
 let playerScore = 0;
 let computerScore = 0;
 
 playerScoreEL.innerText = playerScore;
 computerScoreEL.innerText = computerScore;
+
+// Prompt for Player name
+let person = prompt("Hi!, please enter your username : ");
+document.getElementById("playerBoard").innerText = person;
 
 // Button
 const choiceButton = document.querySelectorAll(".selection-button");
@@ -34,7 +37,6 @@ choiceButton.forEach((choice) => {
 });
 
 // Get a random hand for the computer - switch instead of if?
-
 function getComputerChoice() {
   const num1 = Math.random() * 100;
 
@@ -50,7 +52,6 @@ function getComputerChoice() {
 }
 
 // Function for each round of play
-
 function playRound(playerSelection) {
   tieScoreEL.innerText = "";
   const computerSelection = getComputerChoice();
